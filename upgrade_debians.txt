@@ -1,0 +1,34 @@
+Create a file 'upgrade_debians.tar' with the following packages
+(with updated versions as needed):
+
+agent-ovs-dbg_1.1.0-20_amd64.deb
+agent-ovs_1.1.0-20_amd64.deb
+group-based-policy-automation_2014.2.3~dev1-30_all.deb
+group-based-policy-ui_2014.2.3~dev8-30_all.deb
+group-based-policy_2014.2.4~dev49-30_all.deb
+libmodelgbp-dbg_1.1.0-20_amd64.deb
+libmodelgbp-dev_1.1.0-20_amd64.deb
+libmodelgbp_1.1.0-20_amd64.deb
+libopflex-dbg_1.1.0-20_amd64.deb
+libopflex-dev_1.1.0-20_amd64.deb
+libopflex_1.1.0-20_amd64.deb
+libuv-dbg_1.5.0-1_amd64.deb
+libuv-dev_1.5.0-1_amd64.deb
+libuv_1.5.0-1_amd64.deb
+neutron-ml2-driver-apic_2014.2.0.dev130-45_all.deb
+neutron-opflex-agent_2014.2.0-33_all.deb
+openvswitch-common_2.4.1~gbp-16_amd64.deb
+openvswitch-datapath-source_2.4.1~gbp-16_all.deb
+openvswitch-dbg_2.4.1~gbp-16_amd64.deb
+openvswitch-ipsec_2.4.1~gbp-16_amd64.deb
+openvswitch-lib-dev_2.4.1~gbp-16_amd64.deb
+openvswitch-lib_2.4.1~gbp-16_amd64.deb
+openvswitch-switch_2.4.1~gbp-16_amd64.deb
+openvswitch-test_2.4.1~gbp-16_all.deb
+openvswitch-testcontroller_2.4.1~gbp-16_amd64.deb
+openvswitch-vtep_2.4.1~gbp-16_amd64.deb
+python-apicapi_1.0.5-31_all.deb
+python-group-based-policy-client_0.9.5-30_all.deb
+python-openvswitch_2.4.1~gbp-16_all.deb
+openvswitch-datapath-dkms_2.4.1~gbp-16_all.deb
+openvswitch-pki_2.4.1~gbp-16_all.deb
