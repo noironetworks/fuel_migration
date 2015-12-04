@@ -10,21 +10,23 @@ upgrade_node.py is to be used when a node is added to the environment after the 
 Usage: upgrade_setup.py [options]
 
 Options:
-  -h, --help            show this help message and exit
-  -e ENVID, --env=ENVID
-                        Environment id
-  -a APIC_SYSTEM_ID, --apic_system_id=APIC_SYSTEM_ID
-                        new apic system id to create
-  -v INFRA_VLAN, --infra_vlan=INFRA_VLAN
-                        infra_vlan
-  -p INFRA_IP, --infra_ip=INFRA_IP
-                        infra ip
-  -r VLAN_RANGE, --vlan_range=VLAN_RANGE
-                        new vlan range in format physnet2:1000:1030
-  -o RCFILE, --openrc=RCFILE
-                        rc file with openstack credentials
-  -n APIC_EXT_NET, --apic_ext_net=APIC_EXT_NET
-                        Apic external net name
+
+  -h, --help             show this help message and exit
+
+  -e ENVID, --env=ENVID  Environment id
+  
+  -a APIC_SYSTEM_ID, --apic_system_id=APIC_SYSTEM_ID new apic system id to create
+  
+  -v INFRA_VLAN, --infra_vlan=INFRA_VLAN infra_vlan
+  
+  -p INFRA_IP, --infra_ip=INFRA_IP infra ip
+  
+  -r VLAN_RANGE, --vlan_range=VLAN_RANGE new vlan range in format physnet2:1000:1030
+  
+  -o RCFILE, --openrc=RCFILE rc file with openstack credentials
+  
+  -n APIC_EXT_NET, --apic_ext_net=APIC_EXT_NET Apic external net name
+  
   -s SNAT, --snat=SNAT  SNAT gateway/mask. eg 1.2.1.1/26
 
 All options are mandatory. (NOTE: the new vlan range should not overlap existing vlan range)
