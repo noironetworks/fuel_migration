@@ -1,0 +1,3 @@
+Package: * 
+Pin: release v=1.0,l=upgrade_repository
+Pin-Priority: 1500
