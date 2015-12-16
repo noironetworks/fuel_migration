@@ -45,8 +45,10 @@ class Fnode(object):
 	self.roles = [str(x).strip() for x in jel['roles'].split(',')]
 	if 'compute' in self.roles:
 	    self.role = 'compute'
-	if 'controller' in self.roles:
+	elif 'controller' in self.roles:
 	    self.role = 'controller'
+        else:
+            self.role = 'ignore'
 
 	self.id = jel['id']
 	self.repolist = None
@@ -182,7 +184,8 @@ def instantiate_nodes(envid):
 
     for jel in jlist:
 	nobj = Fnode(jel)
-	fnodelist.append(nobj)
+        if not nobj.role == "ignore":
+           fnodelist.append(nobj)
 
     return fnodelist
 
