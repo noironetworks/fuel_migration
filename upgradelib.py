@@ -70,7 +70,7 @@ class Fnode(object):
 	op = self._runcmd(cmd)
 	self.repolist = op.split("\r\n")
 
-    def addhieradata(self, asid, infra_vlan, infra_ip, vlan_range, apic_ext_net, snat):
+    def addhieradata(self, asid, infra_vlan, infra_ip, vlan_range, apic_ext_net, snat, ext_subnet,ext_subnet_gw,ext_subnet_cidr,ap_start,ap_end):
 	cmd = "echo apic_system_id: %s >> /etc/hiera/nodes.yaml" % asid
 	self._runcmd(cmd)
 	cmd = "echo apic_infra_vlan: %s >> /etc/hiera/nodes.yaml" % infra_vlan
@@ -82,6 +82,16 @@ class Fnode(object):
 	cmd = "echo apic_ext_net: %s >> /etc/hiera/nodes.yaml" % apic_ext_net
 	self._runcmd(cmd)
 	cmd = "echo snat_gateway: %s >> /etc/hiera/nodes.yaml" % snat
+	self._runcmd(cmd)
+	cmd = "echo ext_subnet: %s >> /etc/hiera/nodes.yaml" % ext_subnet
+	self._runcmd(cmd)
+	cmd = "echo ext_subnet_gw: %s >> /etc/hiera/nodes.yaml" % ext_subnet_gw
+	self._runcmd(cmd)
+	cmd = "echo ext_subnet_cidr: %s >> /etc/hiera/nodes.yaml" % ext_subnet_cidr
+	self._runcmd(cmd)
+	cmd = "echo ap_start: %s >> /etc/hiera/nodes.yaml" % ap_start
+	self._runcmd(cmd)
+	cmd = "echo ap_end: %s >> /etc/hiera/nodes.yaml" % ap_end
 	self._runcmd(cmd)
 
     def removehieradata(self):
@@ -96,6 +106,16 @@ class Fnode(object):
 	cmd = "sed -i '/^apic_ext_net/d' /etc/hiera/nodes.yaml"
 	self._runcmd(cmd)
 	cmd = "sed -i '/^snat_gateway/d' /etc/hiera/nodes.yaml"
+	self._runcmd(cmd)
+	cmd = "sed -i '/^ext_subnet/d' /etc/hiera/nodes.yaml"
+	self._runcmd(cmd)
+	cmd = "sed -i '/^ext_subnet_gw/d' /etc/hiera/nodes.yaml"
+	self._runcmd(cmd)
+	cmd = "sed -i '/^ext_subnet_cidr/d' /etc/hiera/nodes.yaml"
+	self._runcmd(cmd)
+	cmd = "sed -i '/^ap_start/d' /etc/hiera/nodes.yaml"
+	self._runcmd(cmd)
+	cmd = "sed -i '/^ap_end/d' /etc/hiera/nodes.yaml"
 	self._runcmd(cmd)
 
     def addRepo(self, reponame, repouri):

@@ -9,6 +9,12 @@ $new_vlan_range = hiera('new_vlan_range')
 $snat_gateway = hiera('snat_gateway')
 $apic_ext_net = hiera('apic_ext_net')
 
+$ext_subnet = hiera('ext_subnet')
+$ext_subnet_gw = hiera('ext_subnet_gw')
+$ext_subnet_cidr = hiera('ext_subnet_cidr')
+$ap_start = hiera('ap_start')
+$ap_end = hiera('ap_end')
+
 notify {$role:}
 notify {$mysql_passwd:}
 
@@ -35,6 +41,12 @@ case $role {
          }
          exec {'update_database2':
             command => "/usr/bin/mysql -u root -p$mysql_passwd neutron -e \"update ml2_network_segments set segmentation_id=NULL \" ";
+         }
+         exec {'update_database3':
+            command => "/usr/bin/mysql -u root -p$mysql_passwd neutron -e \"update subnets set gateway_ip='$ext_subnet_gw', cidr='$ext_subnet_cidr' where name='$ext_subnet'\" ";
+         }
+         exec {'update_database4':
+            command => "/usr/bin/mysql -u root -p$mysql_passwd neutron -e \"update ipallocationpools set first_ip='$ap_start',last_ip='$ap_end' where subnet_id = (select id from subnets where name='$ext_subnet') \" ";
          }
      }
 }

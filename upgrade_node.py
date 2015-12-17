@@ -14,6 +14,11 @@ def main():
     parser.add_option("-o", "--openrc", help="rc file with openstack credentials", dest='rcfile')
     parser.add_option("-n", "--apic_ext_net", help="Apic external net name", dest='apic_ext_net')
     parser.add_option("-s", "--snat", help="SNAT gateway/mask. eg 1.2.1.1/26", dest='snat')
+    parser.add_option("-x", "--ext_subnet", help="External network router subnet name", dest='ext_subnet')
+    parser.add_option("-y", "--ext_subnet_gateway", help="External network router subnet gateway", dest='ext_subnet_gw')
+    parser.add_option("-z", "--ext_subnet_cidr", help="External network router subner cidr", dest='ext_subnet_cidr')
+    parser.add_option("-t", "--ext_subnet_range", help="Ext. net. subnet allocation pool range, eg 1.109.1.2:1.109.1.100", dest='ext_subnet_ap_range')
+
     (options, args) = parser.parse_args()
 
     if not options.envid:
@@ -51,6 +56,31 @@ def main():
     if not options.snat:
 	print "Please provide the SNAT gateway/maskbits"
 	sys.exit(-1)
+
+    if not options.ext_subnet:
+        print "Please provide the external net subnet name"
+        sys.exit(-1)
+
+    if not options.ext_subnet_gw:
+        print "Please provide the external net subnet gateway"
+        sys.exit(-1)
+
+    if not options.ext_subnet_cidr:
+        print "Please provide the external net subnet cidr"
+        sys.exit(-1)
+
+    if not options.ext_subnet_ap_range:
+        print "Please provide the allocation pool range for external net subnet"
+        sys.exit(-1)
+
+    if not len(options.ext_subnet_ap_range.split(':')) == 2:
+        print "Invalid format for allocation pool eg. 1.109.1.10:1.109.1.100"
+        sys.exit(-1)
+    ap_start,ap_end = options.ext_subnet_ap_range.split(':')
+
+    if not len(options.vlan_range.split(':')) == 3:
+        print "Invalid format for vlan range. eg physnet2:2001:2030"
+        sys.exit(-1)
 
     if not re.match('^(?:(?:[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}(?:[1-9]|[1-9][1-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\/([1-9]|[1-2]\d|3[0-2])$', options.snat):
 	print "Invalid SNAT gateway/maskbits. Eg. 1.2.1.1/24"
@@ -103,7 +133,7 @@ def main():
     sdir = os.path.join(sys.path[0], 'puppet')
     node_to_upgrade.copydir(sdir=sdir, dest="/root/upgrade")
 
-    node_to_upgrade.addhieradata(options.apic_system_id, options.infra_vlan, options.infra_ip, options.vlan_range, options.apic_ext_net, options.snat)
+    node_to_upgrade.addhieradata(options.apic_system_id, options.infra_vlan, options.infra_ip, options.vlan_range, options.apic_ext_net, options.snat, options.ext_subnet,options.ext_subnet_gw,options.ext_subnet_cidr,ap_start,ap_end)
     node_to_upgrade.basepkgs()
 
     #update neutron configuration files, modify database
