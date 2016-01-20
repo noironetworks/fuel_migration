@@ -28,6 +28,14 @@ Options:
   -n APIC_EXT_NET, --apic_ext_net=APIC_EXT_NET Apic external net name
   
   -s SNAT, --snat=SNAT  SNAT gateway/mask. eg 1.2.1.1/26
+  
+  -x EXT_SUBNET, --ext_subnet=EXT_SUBNET External network router subnet name
+  
+  -y EXT_SUBNET_GW, --ext_subnet_gateway=EXT_SUBNET_GW External network subnet gateway
+  
+  -z EXT_SUBNET_CIDR, --ext_subnet_cidr=EXT_SUBNET_CIDR External network router subner cidr
+  
+  -t EXT_SUBNET_AP_RANGE, --ext_subnet_range=EXT_SUBNET_AP_RANGE Ext. net. subnet allocation pool range, eg 1.109.1.2:1.109.1.100
 
 All options are mandatory. (NOTE: the new vlan range should not overlap existing vlan range)
 
